@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="./ol.css">
+        <link rel="stylesheet" href="fontawesome-all.min.css">
+        <link rel="stylesheet" href="./ol-layerswitcher.css">
+        <link rel="stylesheet" href="./qgis2web.css">
+        <style>
+        html, body {
+            background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+
+        }
+        .ol-control > * {
+            background-color: #f8f8f8!important;
+            color: #444444!important;
+            border-radius: 0px;
+        }
+        .ol-attribution a, .gcd-gl-input::placeholder, .search-layer-input-search::placeholder {
+            color: #444444!important;
+        }
+        .search-layer-input-search {
+            background-color: #f8f8f8!important;
+        }
+        .ol-control > *:focus, .ol-control >*:hover {
+            background-color: rgba(248, 248, 248, 0.7)!important;
+        } 
+        .ol-control {
+            background-color: rgba(255,255,255,.4) !important;
+            padding: 2px !important;
+        } 
+        </style>
+
+        <style>
+            body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f2f2f2;
+  overflow-x: hidden;
+
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 15px;
+      background-color: #fff;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 20px 10px;
+    }
+
+    .top-bar .left h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .top-bar .left h2 {
+      margin: 5px 0 0 0;
+      font-size: 14px;
+      font-weight: normal;
+    }
+
+    .search-bar {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .search-bar input {
+      padding: 6px;
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .search-bar button {
+      padding: 6px 10px;
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: #d32f2f;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    nav ul li {
+      padding: 12px 20px;
+      color: white;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    h2.map-title {
+      text-align: center;
+      margin: 30px 0 10px 0;
+      font-size: 20px;
+      color: #333;
+    }
+
+    #map {
+      width: 100%;
+      height: 500px;
+    }
+
+    .statistik {
+      text-align: center;
+      padding: 30px 20px;
+      background: #f9f9f9;
+    }
+
+    .statistik h2 {
+      border-top: 5px solid red;
+      padding-top: 20px;
+      margin-top: 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      padding: 20px 0;
+    }
+
+    .stats-grid div {
+      background-color: white;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .search-result {
+      text-align: center;
+      margin: 20px 0;
+      font-weight: bold;
+      color: #1976d2;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 30px 20px;
+      flex-wrap: wrap;
+	  margin-bottom: 0 ;
+	  padding-bottom: 0 ;
+    }
+
+    footer div {
+      margin: 10px;
+    }
+
+    .kategori ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .kategori li {
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 600px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .search-bar {
+        margin-top: 10px;
+        width: 100%;
+      }
+
+      .search-bar input {
+        flex: 1;
+      }
+    }
+
+    /* Tambahan untuk peta dari QGIS2Web */
+    html, body, #map {
+      padding: 0;
+      margin: 0;
+    }
+
+    .ol-control > * {
+      background-color: #f8f8f8 !important;
+      color: #444 !important;
+      border-radius: 0;
+    }
+
+    .ol-attribution a,
+    .gcd-gl-input::placeholder,
+    .search-layer-input-search::placeholder {
+      color: #444 !important;
+    }
+
+    .search-layer-input-search {
+      background-color: #f8f8f8 !important;
+    }
+
+    .ol-control > *:focus,
+    .ol-control > *:hover {
+      background-color: rgba(248, 248, 248, 0.7) !important;
+    }
+
+    .ol-control {
+      background-color: rgba(255, 255, 255, 0.4) !important;
+      padding: 2px !important;
+    }
+        </style>
+        <title></title>
+    </head>
+    <body>
+	<div class="container">
+    <div class="top-bar">
+      <div class="left">
+        <h1>WEBSITE RESMI DESA CANDISARI</h1>
+        <h2>KEC. BANYUURIP KAB. PURWOREJO PROV. JAWA TENGAH</h2>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Cari Artikel" />
+        <button onclick="cariArtikel()">Cari</button>
+      </div>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="https://candisari-banyuurip.purworejokab.go.id">BERANDA</a></li>
+    <li><a href="https://candisari-banyuurip.purworejokab.go.id/artikel/33">PROFIL DESA</a></li>
+    <li><a href="https://candisari-banyuurip.purworejokab.go.id/artikel/2016/8/24/pemerintah-desa">PEMERINTAHAN DESA</a></li>
+    <li><a href="lembaga-masyarakat.html">LEMBAGA MASYARAKAT</a></li>
+    <li><a href="data-desa.html">DATA DESA</a></li>
+    <li><a href="kontak.html">KONTAK</a></li>
+    <li><a href="regulasi.html">REGULASI</a></li>
+    <li><a href="peta.html">PETA</a></li>
+    <li><a href="login.html">LOGIN</a></li>
+      </ul>
+    </nav>
+
+    <!-- Judul Peta -->
+    <h2 class="map-title">Peta Penggunaan Tanah Desa Candisari</h2>
+
+    <!-- PETA -->
+    <div id="map">
+      <div id="popup" class="ol-popup">
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <div id="popup-content"></div>
+      </div>
+    </div>
+
+    <section class="statistik">
+      <h2>Statistik Desa</h2>
+      <div class="stats-grid">
+        <div>Data Wilayah</div>
+        <div>Data Pendidikan</div>
+        <div>Data Pekerjaan</div>
+        <div>Data Agama</div>
+        <div>Jenis Kelamin</div>
+        <div>Statistik Umur</div>
+      </div>
+      <div id="searchResult" class="search-result"></div>
+    </section>
+
+    <footer>
+      <div>
+        <strong>DESA CANDISARI</strong><br />
+       Jl Raya Kutoarjo-Purworejo Km 06<br />
+       Kecamatan Banyuurip Kabupaten Purworejo Provinsi Jawa<br />
+       Tengah Kode Pos 54171<br />
+       Email: candisari.banyuurip@purworejokab.go.id
+      </div>
+      <div class="kategori">
+        <div><strong>KATEGORI</strong></div>
+        <ul>
+          <li>Berita Desa</li>
+          <li>Program Kerja</li>
+          <li>Peraturan Desa</li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+
+       
+        <script src="qgis2web_expressions.js"></script>
+<script src="proj4.js"></script>
+        <script>proj4.defs('EPSG:32749','+proj=utm +zone=49 +south +datum=WGS84 +units=m +no_defs');</script>
+        <script src="./functions.js"></script>
+        <script src="./ol.js"></script>
+        <script src="./ol-layerswitcher.js"></script>
+        <script src="AdmCandisarirfix_1.js"></script>
+        <script src="AdmCandisarirfix_1_style.js"></script>
+        <script src="./layers.js" type="text/javascript"></script> 
+        <script src="./Autolinker.min.js"></script>
+        <script src="./qgis2web.js"></script>
+		
+	<!-- Script Cari Artikel -->
+  <script>
+    function cariArtikel() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const result = document.getElementById("searchResult");
+
+      if (!input.trim()) {
+        result.innerText = "Silakan masukkan kata kunci untuk mencari.";
+        return;
+      }
+
+      const dummyData = [
+        "berita desa",
+        "program kerja",
+        "peraturan desa",
+        "data pendidikan",
+        "jenis kelamin",
+        "statistik umur"
+      ];
+
+      const found = dummyData.filter(item => item.includes(input));
+      if (found.length > 0) {
+        result.innerText = "Hasil ditemukan: " + found.join(", ");
+      } else {
+        result.innerText = "Tidak ditemukan hasil untuk: " + input;
+      }
+    }
+  </script>
+    </body>
+</html>
